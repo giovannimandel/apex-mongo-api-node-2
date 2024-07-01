@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+const cors = require('cors');
 const port = 3000;
 
 // Conectar ao MongoDB
@@ -10,6 +11,9 @@ mongoose.connect('mongodb://localhost:27017/agencia_turismo', {
 }).catch(err => {
     console.error('Erro ao conectar ao MongoDB', err);
 });
+
+app.use(cors());
+app.use(express.json());
 
 app.use(express.json());
 
