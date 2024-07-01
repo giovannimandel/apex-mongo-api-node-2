@@ -5,8 +5,7 @@ const app = express();
 app.use(express.json());
 
 const CidadeSchema = new mongoose.Schema({
-  _id: String,
-  nome: String,
+  cidade: String,
   estado: String,
   populacao: Number
 }, { collection: 'cidades' });
