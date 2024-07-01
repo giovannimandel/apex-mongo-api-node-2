@@ -14,10 +14,7 @@ const Cidade = mongoose.models.Cidade || mongoose.model('Cidade', CidadeSchema);
 
 const connectDB = async () => {
   if (mongoose.connection.readyState >= 1) return;
-  return mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  });
+  return mongoose.connect(process.env.MONGODB_URI);
 };
 
 app.get('/api/cidade', async (req, res) => {
