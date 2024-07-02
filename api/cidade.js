@@ -31,7 +31,7 @@ app.post('/api/cidade', async (req, res) => {
   await connectDB();
   const { _id, nome, estado, populacao } = req.body;
   const novaCidade = new Cidade({
-    nome,
+    cidade,
     estado,
     populacao
   });
