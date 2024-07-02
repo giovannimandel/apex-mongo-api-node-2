@@ -17,7 +17,7 @@ const connectDB = async () => {
   return mongoose.connect(process.env.MONGODB_URI);
 };
 
-app.get('/api/cidade', async (req, res) => {
+app.get('/api/cidade/get', async (req, res) => {
   await connectDB();
   try {
     const cidades = await Cidade.find();
@@ -27,11 +27,10 @@ app.get('/api/cidade', async (req, res) => {
   }
 });
 
-app.post('/api/cidade', async (req, res) => {
+app.post('/api/cidade/post', async (req, res) => {
   await connectDB();
   const { _id, nome, estado, populacao } = req.body;
   const novaCidade = new Cidade({
-    _id,
     nome,
     estado,
     populacao
