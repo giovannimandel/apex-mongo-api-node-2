@@ -29,7 +29,7 @@ app.get('/api/cidade', async (req, res) => {
 
 app.post('/api/cidade', async (req, res) => {
   await connectDB();
-  const { _id, nome, estado, populacao } = req.body;
+  const { _id, cidade, estado, populacao } = req.body;
   const novaCidade = new Cidade({
     cidade,
     estado,
