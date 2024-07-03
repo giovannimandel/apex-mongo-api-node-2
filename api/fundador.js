@@ -33,7 +33,7 @@ router.get('/api/fundador', async (req, res) => {
 
 router.post('/api/fundador', async (req, res) => {
   await connectDB();
-  const { _id, nome, data_nascimento, data_morte, nacionalidade, atividade } = req.body;
+  const { nome, data_nascimento, data_morte, nacionalidade, atividade } = req.body;
   const novoFundador = new Fundador({
     nome,
     data_nascimento,
