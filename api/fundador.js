@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const router = express.Router();
 
 const FundadorSchema = new mongoose.Schema({
-  _id: Number,
   nome: String,
   data_nascimento: Date,
   data_morte: Date,
@@ -36,7 +35,6 @@ router.post('/api/fundador', async (req, res) => {
   await connectDB();
   const { _id, nome, data_nascimento, data_morte, nacionalidade, atividade } = req.body;
   const novoFundador = new Fundador({
-    _id,
     nome,
     data_nascimento,
     data_morte,
