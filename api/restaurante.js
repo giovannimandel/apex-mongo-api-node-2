@@ -6,11 +6,9 @@ app.use(express.json());
 
 const RestauranteSchema = new mongoose.Schema({
   nome: String,
-  endereco: {
-    rua: String,
-    bairro: String,
-    cep: String
-  },
+  rua: String,
+  bairro: String,
+  cep: String,
   categoria: Number,
   preco_medio: Number,
   cidade_id: Number,
