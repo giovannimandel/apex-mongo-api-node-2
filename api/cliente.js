@@ -45,7 +45,7 @@ router.post('/api/cliente', async (req, res) => {
     email,
     senha,
     endereco,
-    pacotes_id
+    pacotes_id: JSON.parse(pacotes_id)
   });
 
   try {
