@@ -8,7 +8,9 @@ const ClienteSchema = new mongoose.Schema({
   cpf: String,
   email: String,
   senha: String,
-  endereco: String,
+  rua: String,
+  bairro: String,
+  cep: string,
   pacotes_id: [Number]
 }, { collection: 'clientes' });
 
@@ -34,13 +36,15 @@ router.get('/api/cliente', async (req, res) => {
 
 router.post('/api/cliente', async (req, res) => {
   await connectDB();
-  const { nome, cpf, email, senha,endereco, pacotes_id } = req.body;
+  const { nome, cpf, email, senha,rua, bairro, cep, pacotes_id } = req.body;
   const novoCliente = new Cliente({
     nome,
     cpf,
     email,
     senha,
-    endereco,
+    rua: String,
+    bairro: String,
+    cep: string,
     pacotes_id
   });
 
