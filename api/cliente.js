@@ -10,7 +10,7 @@ const ClienteSchema = new mongoose.Schema({
   senha: String,
   rua: String,
   bairro: String,
-  cep: string,
+  cep: String,
   pacotes_id: [Number]
 }, { collection: 'clientes' });
 
@@ -44,7 +44,7 @@ router.post('/api/cliente', async (req, res) => {
     senha,
     rua: String,
     bairro: String,
-    cep: string,
+    cep: String,
     pacotes_id
   });
 
