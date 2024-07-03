@@ -13,7 +13,7 @@ const RestauranteSchema = new mongoose.Schema({
   categoria: Number,
   preco_medio: Number,
   cidade_id: Number,
-  especialidade_id: Number
+  especialidade: String
 }, { collection: 'restaurantes' });
 
 const Restaurante = mongoose.models.Restaurante || mongoose.model('Restaurante', RestauranteSchema);
@@ -38,14 +38,14 @@ router.get('/api/restaurante', async (req, res) => {
 
 router.post('/api/restaurante', async (req, res) => {
   await connectDB();
-  const { nome, endereco, categoria, preco_medio, cidade_id, especialidade_id } = req.body;
+  const { nome, endereco, categoria, preco_medio, cidade_id, especialidade } = req.body;
   const novoRestaurante = new Restaurante({
     nome,
     endereco,
     categoria,
     preco_medio,
     cidade_id,
-    especialidade_id
+    especialidade
   });
 
   try {
