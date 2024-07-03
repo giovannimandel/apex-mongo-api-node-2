@@ -1,4 +1,7 @@
+const express = require('express');
 const mongoose = require('mongoose');
+
+const router = express.Router();
 
 const FundadorSchema = new mongoose.Schema({
   _id: Number,
@@ -19,34 +22,34 @@ const connectDB = async () => {
   });
 };
 
-module.exports = async (req, res) => {
+router.get('/api/fundador', async (req, res) => {
   await connectDB();
-
-  if (req.method === 'GET') {
-    try {
-      const fundadores = await Fundador.find();
-      res.status(200).json(fundadores);
-    } catch (err) {
-      res.status(500).json({ message: err.message });
-    }
+  try {
+    const fundadores = await Fundador.find();
+    res.status(200).json(fundadores);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
+});
 
-  if (req.method === 'POST') {
-    const { _id, nome, data_nascimento, data_morte, nacionalidade, atividade } = req.body;
-    const novoFundador = new Fundador({
-      _id,
-      nome,
-      data_nascimento,
-      data_morte,
-      nacionalidade,
-      atividade
-    });
+router.post('/api/fundador', async (req, res) => {
+  await connectDB();
+  const { _id, nome, data_nascimento, data_morte, nacionalidade, atividade } = req.body;
+  const novoFundador = new Fundador({
+    _id,
+    nome,
+    data_nascimento,
+    data_morte,
+    nacionalidade,
+    atividade
+  });
 
-    try {
-      const fundadorSalvo = await novoFundador.save();
-      res.status(201).json(fundadorSalvo);
-    } catch (err) {
-      res.status(400).json({ message: err.message });
-    }
+  try {
+    const fundadorSalvo = await novoFundador.save();
+    res.status(201).json(fundadorSalvo);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
   }
-};
+});
+
+module.exports = router;
