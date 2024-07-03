@@ -7,14 +7,10 @@ const PacoteSchema = new mongoose.Schema({
   preco: Number,
   data_inicio: Date,
   data_fim: Date,
-  pontos_turisticos: [
-    {
-      ponto_turistico_id: Number,
-      dia: Date,
-      hora_inicio: String,
-      hora_final: String
-    }
-  ],
+  ponto_turistico_id: Number,
+  dia: Date,
+  hora_inicio: String,
+  hora_final: String,
   cidade_id: Number,
   hotel_id: Number
 }, { collection: 'pacotes' });
@@ -41,12 +37,15 @@ router.get('/api/pacote', async (req, res) => {
 
 router.post('/api/pacote', async (req, res) => {
   await connectDB();
-  const { preco, data_inicio, data_fim, pontos_turisticos, cidade_id, hotel_id } = req.body;
+  const { preco, data_inicio, data_fim, ponto_turistico_id, dia, hora_inicio, hora_final, cidade_id, hotel_id } = req.body;
   const novoPacote = new Pacote({
     preco,
     data_inicio,
     data_fim,
-    pontos_turisticos,
+    ponto_turistico_id,,
+    dia,
+    hora_inicio,
+    hora_final,
     cidade_id,
     hotel_id
   });
