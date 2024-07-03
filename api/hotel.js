@@ -5,19 +5,13 @@ const router = express.Router();
 
 const HotelSchema = new mongoose.Schema({
   nome: String,
-  endereco: {
-    rua: String,
-    bairro: String,
-    cep: String
-  },
+  rua: String,
+  bairro: String,
+  cep: String,
   numQuartos: Number,
   categoria: Number,
-  tipo_quartos: [
-    {
-      tipo: String,
-      preco: Number
-    }
-  ],
+  tipo: String,
+  preco: Number,
   cidade_id: Number,
   restaurante_id: Number
 }, { collection: 'hoteis' });
@@ -44,13 +38,16 @@ router.get('/api/hotel', async (req, res) => {
 
 router.post('/api/hotel', async (req, res) => {
   await connectDB();
-  const { nome, endereco, numQuartos, categoria, tipo_quartos, cidade_id, restaurante_id } = req.body;
+  const { nome, rua, bairro, cep, numQuartos, categoria, tipo, preco, cidade_id, restaurante_id } = req.body;
   const novoHotel = new Hotel({
     nome,
-    endereco,
+    rua: String,
+    bairro: String,
+    cep: String,
     numQuartos,
     categoria,
-    tipo_quartos,
+    tipo: String,
+    preco: Number,
     cidade_id,
     restaurante_id
   });
