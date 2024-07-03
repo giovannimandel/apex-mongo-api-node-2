@@ -41,13 +41,13 @@ router.post('/api/hotel', async (req, res) => {
   const { nome, rua, bairro, cep, numQuartos, categoria, tipo, preco, cidade_id, restaurante_id } = req.body;
   const novoHotel = new Hotel({
     nome,
-    rua: String,
-    bairro: String,
-    cep: String,
+    rua,
+    bairro,
+    cep,
     numQuartos,
     categoria,
-    tipo: String,
-    preco: Number,
+    tipo,
+    preco,
     cidade_id,
     restaurante_id
   });
