@@ -8,11 +8,7 @@ const ClienteSchema = new mongoose.Schema({
   cpf: String,
   email: String,
   senha: String,
-  endereco: {
-    rua: String,
-    bairro: String,
-    cep: String
-  },
+  endereco: String,
   pacotes_id: [Number]
 }, { collection: 'clientes' });
 
