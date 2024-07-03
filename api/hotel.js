@@ -21,13 +21,10 @@ const Hotel = mongoose.models.Hotel || mongoose.model('Hotel', HotelSchema);
 
 const connectDB = async () => {
   if (mongoose.connection.readyState >= 1) return;
-  return mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  });
+  return mongoose.connect(process.env.MONGODB_URI);
 };
 
-router.get('/api/hotel', async (req, res) => {
+app.get('/api/hotel', async (req, res) => {
   await connectDB();
   try {
     const hoteis = await Hotel.find();
@@ -37,7 +34,7 @@ router.get('/api/hotel', async (req, res) => {
   }
 });
 
-router.post('/api/hotel', async (req, res) => {
+app.post('/api/hotel', async (req, res) => {
   await connectDB();
   const { nome, rua, bairro, cep, numQuartos, categoria, tipo, preco, cidade_id, restaurante_id } = req.body;
   const novoHotel = new Hotel({
