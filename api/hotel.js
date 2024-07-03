@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-const router = express.Router();
+const app = express();
+app.use(express.json());
 
 const HotelSchema = new mongoose.Schema({
   nome: String,
