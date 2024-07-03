@@ -42,9 +42,9 @@ router.post('/api/cliente', async (req, res) => {
     cpf,
     email,
     senha,
-    rua: String,
-    bairro: String,
-    cep: String,
+    rua,
+    bairro,
+    cep,
     pacotes_id
   });
 
