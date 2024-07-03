@@ -61,4 +61,4 @@ router.post('/api/hotel', async (req, res) => {
   }
 });
 
-module.exports = router;
+module.exports = app;
