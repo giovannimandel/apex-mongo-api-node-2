@@ -19,13 +19,10 @@ const Restaurante = mongoose.models.Restaurante || mongoose.model('Restaurante',
 
 const connectDB = async () => {
   if (mongoose.connection.readyState >= 1) return;
-  return mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  });
+  return mongoose.connect(process.env.MONGODB_URI);
 };
 
-router.get('/api/restaurante', async (req, res) => {
+app.get('/api/restaurante', async (req, res) => {
   await connectDB();
   try {
     const restaurantes = await Restaurante.find();
@@ -35,12 +32,14 @@ router.get('/api/restaurante', async (req, res) => {
   }
 });
 
-router.post('/api/restaurante', async (req, res) => {
+app.post('/api/restaurante', async (req, res) => {
   await connectDB();
-  const { nome, endereco, categoria, preco_medio, cidade_id, especialidade } = req.body;
+  const { nome, rua, bairro, cep, categoria, preco_medio, cidade_id, especialidade } = req.body;
   const novoRestaurante = new Restaurante({
     nome,
-    endereco,
+    rua,
+    bairro,
+    cep,
     categoria,
     preco_medio,
     cidade_id,
@@ -55,4 +54,4 @@ router.post('/api/restaurante', async (req, res) => {
   }
 });
 
-module.exports = router;
+module.exports = app;
